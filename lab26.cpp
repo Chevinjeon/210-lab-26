@@ -34,3 +34,18 @@ long long insert_set(set<string>& st);
 long long delete_vector(vector<string>& vec);
 long long delete_list(list<string>& lst);
 long long delete_set(set<string>& st);
+
+// Helper functions for running experiments
+void run_single_experiment(int run);
+void initialize_accumulator();
+void calculate_averages();
+void display_results();
+
+int main() {
+    cout << "Data Structures Olympics - Lab 26\n";
+    cout << "Running " << NUM_RUNS << " simulations...\n\n";
+    
+    // Initialize accumulator slice to 0
+    initialize_accumulator();
+    
+    // Run experiments 15 times
