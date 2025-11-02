@@ -49,3 +49,23 @@ int main() {
     initialize_accumulator();
     
     // Run experiments 15 times
+    for (int run = 0; run < NUM_RUNS; run++) {
+        run_single_experiment(run);
+        
+        // Accumulate results into the accumulator slice
+        for (int op = 0; op < NUM_OPERATIONS; op++) {
+            for (int str = 0; str < NUM_STRUCTURES; str++) {
+                // Skip -1 values (Set Sort), treat as 0
+                if (results[run][op][str] != -1) {
+                    results[NUM_RUNS][op][str] += results[run][op][str];
+                }
+            }
+        }
+    }
+    
+    // Calculate and display averages
+    calculate_averages();
+    display_results();
+    
+    return 0;
+}
