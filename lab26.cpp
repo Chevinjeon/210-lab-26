@@ -97,3 +97,22 @@ void run_single_experiment(int run) {
     results[run][1][0] = sort_vector(vec2);  // Sort Vector
     results[run][1][1] = sort_list(lst2);    // Sort List
     results[run][1][2] = -1;                  // Set already sorted
+    
+    // Race 3: INSERT
+    vector<string> vec3 = vec2;
+    list<string> lst3 = lst2;
+    set<string> st3 = st1;
+    
+    results[run][2][0] = insert_vector(vec3);  // Insert Vector
+    results[run][2][1] = insert_list(lst3);    // Insert List
+    results[run][2][2] = insert_set(st3);      // Insert Set
+    
+    // Race 4: DELETE
+    vector<string> vec4 = vec2;  // Use pre-insert state
+    list<string> lst4 = lst2;
+    set<string> st4 = st1;
+    
+    results[run][3][0] = delete_vector(vec4);  // Delete Vector
+    results[run][3][1] = delete_list(lst4);    // Delete List
+    results[run][3][2] = delete_set(st4);      // Delete Set
+}
