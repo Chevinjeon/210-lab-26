@@ -69,3 +69,17 @@ int main() {
     
     return 0;
 }
+
+// Initialize accumulator slice to zero
+void initialize_accumulator() {
+    for (int op = 0; op < NUM_OPERATIONS; op++) {
+        for (int str = 0; str < NUM_STRUCTURES; str++) {
+            results[NUM_RUNS][op][str] = 0;
+        }
+    }
+}
+
+// Run a single experiment (one complete set of races)
+void run_single_experiment(int run) {
+    // Race 1: READ
+    vector<string> vec1;
