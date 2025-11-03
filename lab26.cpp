@@ -116,3 +116,69 @@ void run_single_experiment(int run) {
     results[run][3][1] = delete_list(lst4);    // Delete List
     results[run][3][2] = delete_set(st4);      // Delete Set
 }
+
+// Calculate averages from accumulated sums
+void calculate_averages() {
+    for (int op = 0; op < NUM_OPERATIONS; op++) {
+        for (int str = 0; str < NUM_STRUCTURES; str++) {
+            if (op == 1 && str == 2) {
+                // Sort for Set is always -1, so average is 0
+                results[NUM_RUNS][op][str] = 0;
+            } else {
+                // Calculate average (already summed, divide by NUM_RUNS)
+                results[NUM_RUNS][op][str] = results[NUM_RUNS][op][str] / NUM_RUNS;
+            }
+        }
+    }
+}
+
+// Display final averaged results
+void display_results() {
+    cout << "Number of simulations: " << NUM_RUNS << "\n";
+    cout << left << setw(12) << "Operation" 
+         << setw(12) << "Vector" 
+         << setw(12) << "List" 
+         << "Set" << endl;
+    
+    string operations[] = {"Read", "Sort", "Insert", "Delete"};
+    
+    for (int op = 0; op < NUM_OPERATIONS; op++) {
+        cout << left << setw(12) << operations[op];
+        for (int str = 0; str < NUM_STRUCTURES; str++) {
+            if (op == 1 && str == 2) {
+                // Sort for Set: display 0
+                cout << setw(12) << 0;
+            } else {
+                cout << setw(12) << results[NUM_RUNS][op][str];
+            }
+        }
+        cout << endl;
+    }
+}
+
+// Race functions (adapted from Lab 25)
+long long read_vector(vector<string>& vec) {
+    auto start = high_resolution_clock::now();
+    ifstream file(DATA_FILE);
+    string line;
+    while (getline(file, line)) {
+        vec.push_back(line);
+    }
+    file.close();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
+
+long long read_list(list<string>& lst) {
+    auto start = high_resolution_clock::now();
+    ifstream file(DATA_FILE);
+    string line;
+    while (getline(file, line)) {
+        lst.push_back(line);
+    }
+    file.close();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
