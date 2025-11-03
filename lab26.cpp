@@ -83,3 +83,17 @@ void initialize_accumulator() {
 void run_single_experiment(int run) {
     // Race 1: READ
     vector<string> vec1;
+    list<string> lst1;
+    set<string> st1;
+    
+    results[run][0][0] = read_vector(vec1);  // Read Vector
+    results[run][0][1] = read_list(lst1);    // Read List
+    results[run][0][2] = read_set(st1);      // Read Set
+    
+    // Race 2: SORT
+    vector<string> vec2 = vec1;
+    list<string> lst2 = lst1;
+    
+    results[run][1][0] = sort_vector(vec2);  // Sort Vector
+    results[run][1][1] = sort_list(lst2);    // Sort List
+    results[run][1][2] = -1;                  // Set already sorted
