@@ -243,3 +243,27 @@ long long delete_vector(vector<string>& vec) {
     vec.erase(vec.begin() + vec.size() / 2);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
+
+long long delete_list(list<string>& lst) {
+    auto start = high_resolution_clock::now();
+    auto it = lst.begin();
+    advance(it, lst.size() / 2);
+    lst.erase(it);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
+
+long long delete_set(set<string>& st) {
+    auto start = high_resolution_clock::now();
+    if (!st.empty()) {
+        auto it = st.begin();
+        advance(it, st.size() / 2);
+        st.erase(it);
+    }
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
