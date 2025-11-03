@@ -198,3 +198,16 @@ long long read_set(set<string>& st) {
 
 long long sort_vector(vector<string>& vec) {
     auto start = high_resolution_clock::now();
+    sort(vec.begin(), vec.end());
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
+
+long long sort_list(list<string>& lst) {
+    auto start = high_resolution_clock::now();
+    lst.sort();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
