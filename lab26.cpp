@@ -182,3 +182,19 @@ long long read_list(list<string>& lst) {
     auto duration = duration_cast<microseconds>(stop - start);
     return duration.count();
 }
+
+long long read_set(set<string>& st) {
+    auto start = high_resolution_clock::now();
+    ifstream file(DATA_FILE);
+    string line;
+    while (getline(file, line)) {
+        st.insert(line);
+    }
+    file.close();
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    return duration.count();
+}
+
+long long sort_vector(vector<string>& vec) {
+    auto start = high_resolution_clock::now();
